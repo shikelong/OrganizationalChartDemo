@@ -48,3 +48,8 @@ li.person > img {
 .personDescription {
   font-size: 0.85em;
 }
+
+.leader {
+  color: blueviolet;
+  font-weight: bold;
+}

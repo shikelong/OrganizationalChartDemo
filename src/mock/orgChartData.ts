@@ -23,7 +23,7 @@ export type Bumon = {
   rowCount?: number;
 };
 
-const avatorImg =
+export const defaultAvatarImg =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4QAqRXhpZgAASUkqAAgAAAABADEBAgAHAAAAGgAAAAAAAABHb29nbGUAAP/bAIQAAwICAwICAwMDAwQDAwQFCAUFBAQFCgcHBggMCgwMCwoLCw0OEhANDhEOCwsQFhARExQVFRUMDxcYFhQYEhQVFAEDBAQFBAUJBQUKFA0LDRQUEBAUFRQPFQ8VFBUQERIUEhQSERUNFRASFRAPFRUVEg0PFQ8VFBUQFRMNDRUTFREN/8AAEQgAIAAgAwERAAIRAQMRAf/EABoAAAICAwAAAAAAAAAAAAAAAAcIBgkDBAX/xAAwEAACAQMDAgQCCwEAAAAAAAABAgMEBREGBxIAIRMxUWEiQggJFBUyQXGBkdHwFv/EABoBAAMBAAMAAAAAAAAAAAAAAAQFBgIAAQP/xAAoEQACAQMDAgUFAAAAAAAAAAABAgADBBESIUEFMRNRcYHBIjJhsdH/2gAMAwEAAhEDEQA/AGo3k3Wte1GjajVFfAZ3p2WBKZSoeV3zxQFiPQk8c4AJwQD0ZUqeEuTIShRN5VCJsefSVd7w786g3Nv1TWXmvmkikYint6Pwp4gDgcYx2ABPHJyx8yT59JHqPVOWP8lxb2tK2XTTHvzBk+pEjqHVwWiVs8h54zgke+cHrGk4hkO+w30hrjoK8U1PXV1XcNN54SUYk5rEDgh4wfLHnxBAOT2z3BNC4eiwB+3yiHqXSqV6hZABU4PwfP17/omP6w7Vt3syWSyMIxZ3LVavGzF55RhMMSo/CHzxGR8QJOeykXbMSF4gPQ6CLrq5y3aIzbrNddW1sktFC0xiMYYgHAY54j9yD/PS8sqDeVyqW7TU03pyv1bUVENujaeSKnM/FRnI5KoA9yzj/Z60zhBvOIpfZZnsU01quxp5QyMcAo3r5qf0IOfcHrptxmYO0s9+sX2XuGvrJo+rtFMz1NNJWwvhSQwNO0wBx5HNOVX1Mnt0TcnChzxEXTV01GQc/EU3ZvSS0eg6UMstHPLLK1RE8CrKHyFZW5KT8gI9sdIa9TLyzt0+idKwbVUOmtSXW522penjrowr03BXEb8ubFSc4BOPh/Lvj5eOGrFlCtxPRaIRiy8yI682dvertwrd9wWtquX7veWZqaIjxWi5lUVBnLlQFUDucAdgB0XQqDTpPnArlMHVwBkyzGS1fSTkwXrtrXx3AaCv/rpofGIxtJPNuNxnPtFq1ts7rHaSiov+1e0zivq2pqC4WdpDDI3hmXwpuaqUkwkzBz8LhSpKuFEqi4tmpjWO0qLK/WufDPeQ6RkgAaV1RfI9jnPoAO5PsBk/l0vAzsI4JxuYYdm9qN4yaPXOiH0XRWq50K/YYNVx1n2vwyc+M0aIBEXx8K5JCEcsMxVXlG1anhtsyUu7+nXJpb6fxjef/9k=";
 // "https://lh3.googleusercontent.com/ogw/ADea4I7Es9_kahiNXLSb2LQpcw_RfAqdFje34CFyt-wtDQ=s32-c-mo";
 
@@ -32,8 +32,8 @@ const generatorEmployees = (count: number = 5): Employee[] => {
   for (let i = 0; i < count; i++) {
     employees.push({
       name: nameGenerator(),
-      id: Math.random.toString(),
-      avatar: avatorImg,
+      id: Math.random().toFixed(4).toString(),
+      // avatar: defaultAvatarImg,
       isLeader: i === 0,
     });
   }
@@ -49,7 +49,7 @@ export const datas: Bumon = {
     {
       name: nameGenerator(),
       id: "p-1",
-      avatar: avatorImg,
+      // avatar: defaultAvatarImg,
       isLeader: true,
     },
   ],
@@ -101,6 +101,7 @@ export const datas: Bumon = {
                   name: "前端研发组",
                   id: "d-3231",
                   stuff: generatorEmployees(5),
+                  rowCount: 2,
                 },
                 {
                   name: "后端研发组",
