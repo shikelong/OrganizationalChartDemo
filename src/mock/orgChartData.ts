@@ -1,9 +1,10 @@
-import chineseNameGenerator from "chinese-random-name";
-import jpNameGenerator from "japanese-name-generator";
+import chineseNameGenerator from "randomCname";
+//import jpNameGenerator from "japanese-name-generator";
 
 const nameGenerator = () => {
-  // return jpNameGenerator().name;
-  return chineseNameGenerator.generate();
+  var ins = new chineseNameGenerator();
+  //return jpNameGenerator().name;
+  return ins.unique().result();
 };
 
 export type Employee = {
@@ -17,7 +18,7 @@ export type Employee = {
 export type Bumon = {
   id: string;
   name: string;
-  stuff?: Employee[];
+  staff?: Employee[];
   children?: Bumon[];
   //一行最多显示的人的数量
   rowCount?: number;
@@ -45,7 +46,7 @@ export const datas: Bumon = {
   id: "d-1",
   name: "虚拟公司",
   rowCount: 2,
-  stuff: [
+  staff: [
     {
       name: nameGenerator(),
       id: "p-1",
@@ -57,63 +58,63 @@ export const datas: Bumon = {
     {
       name: "管理部",
       id: "d-2",
-      stuff: generatorEmployees(5),
+      staff: generatorEmployees(5),
       children: [
         {
           name: "人力资源部",
           id: "d-3",
-          stuff: generatorEmployees(10),
+          staff: generatorEmployees(10),
         },
         {
           name: "公关部",
           id: "d-4",
-          stuff: generatorEmployees(5),
+          staff: generatorEmployees(5),
         },
       ],
     },
     {
       name: "技术部",
       id: "d-21",
-      stuff: generatorEmployees(5),
+      staff: generatorEmployees(5),
       children: [
         {
           name: "平台研发部",
           id: "d-31",
-          stuff: generatorEmployees(3),
+          staff: generatorEmployees(3),
         },
         {
           name: "业务研发部",
           id: "d-32",
-          stuff: generatorEmployees(20),
+          staff: generatorEmployees(20),
           rowCount: 6,
           children: [
             {
               name: "智慧城市研发组",
               id: "d-321",
-              stuff: generatorEmployees(30),
+              staff: generatorEmployees(30),
               children: [
                 {
                   name: "交付和实施小组",
                   id: "d-3232",
-                  stuff: generatorEmployees(3),
+                  staff: generatorEmployees(3),
                 },
                 {
                   name: "前端研发组",
                   id: "d-3231",
-                  stuff: generatorEmployees(5),
+                  staff: generatorEmployees(5),
                   rowCount: 2,
                 },
                 {
                   name: "后端研发组",
                   id: "d-3233",
-                  stuff: generatorEmployees(5),
+                  staff: generatorEmployees(5),
                 },
               ],
             },
             {
               name: "智慧交通研发组",
               id: "d-323",
-              stuff: generatorEmployees(5),
+              staff: generatorEmployees(5),
             },
           ],
         },

@@ -1,6 +1,7 @@
 import React from "react";
 import { Bumon, defaultAvatarImg } from "../mock/orgChartData";
 import "./MyNode.css";
+import Avatar from "boring-avatars";
 
 interface IMyNodeProps {
   nodeData: Bumon;
@@ -30,10 +31,10 @@ const MyNode = ({ nodeData }: IMyNodeProps): JSX.Element => {
       <ul
         className="stuff"
         style={{
-          width: getContainerWidth(nodeData.rowCount, nodeData.stuff?.length),
+          width: getContainerWidth(nodeData.rowCount, nodeData.staff?.length),
         }}
       >
-        {(nodeData.stuff || []).map((employee, index) => (
+        {(nodeData.staff || []).map((employee, index) => (
           <li
             key={employee.id + index}
             className={`person ${employee.isLeader ? "leader" : ""}`}
@@ -42,7 +43,14 @@ const MyNode = ({ nodeData }: IMyNodeProps): JSX.Element => {
               textOverflow: "clip",
             }}
           >
-            <img src={employee.avatar ?? defaultAvatarImg} alt="" />
+            {/* <img src={employee.avatar ?? defaultAvatarImg} alt="" /> */}
+            <Avatar
+              size={50}
+              name={employee.name}
+              square
+              variant="beam"
+              colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
+            />
             <span className="personName">{employee.name}</span>
             <span className="personDescription">{employee.description}</span>
           </li>

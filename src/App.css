@@ -13,6 +13,27 @@
   }
 }
 
+@media print {
+  .notPrint {
+    display: none;
+  }
+
+  .orgchart-container {
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  .myChart {
+    background-image: none !important;
+  }
+}
+
+@page {
+  margin: 5px;
+  size: A4 landscape;
+}
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
