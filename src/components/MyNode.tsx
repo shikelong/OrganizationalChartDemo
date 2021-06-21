@@ -1,7 +1,6 @@
 import React from "react";
-import { Bumon, defaultAvatarImg } from "../mock/orgChartData";
+import { Bumon } from "../mock/orgChartData";
 import "./MyNode.css";
-import Avatar from "boring-avatars";
 
 interface IMyNodeProps {
   nodeData: Bumon;
