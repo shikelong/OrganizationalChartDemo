@@ -7,9 +7,9 @@ interface IMyNodeProps {
   nodeData: Bumon;
 }
 
-const rowMaxRenderPersonCount = 5;
+const rowMaxRenderPersonCount = 3;
 
-const itemWidth = 80;
+const itemWidth = 85;
 
 const getContainerWidth = (
   rowCount = rowMaxRenderPersonCount,

@@ -102,7 +102,7 @@ const OrgChartDemo = (props: IorgChartDemoProps) => {
           zoom={false}
           zoominLimit={count}
         />
-        <div className="notPrint">
+        <div className="notPrint buttonToolbar">
           <button onClick={expandAllNodes}>Expand nodes</button>
           {"    "}
           {/* <button onClick={() => scale()}>Scale Width</button> */}

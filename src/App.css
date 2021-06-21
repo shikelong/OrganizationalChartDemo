@@ -28,6 +28,10 @@
   }
 }
 
+.myChart {
+  background-image: none !important;
+}
+
 @page {
   margin: 5px;
   size: A4 landscape;
