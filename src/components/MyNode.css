@@ -53,3 +53,11 @@ li.person > img {
   color: blueviolet;
   font-weight: bold;
 }
+
+.emptyNode {
+  padding: 1em;
+}
+
+.emptyNode > .header {
+  margin: 0;
+}

@@ -1,10 +1,18 @@
-import chineseNameGenerator from "randomCname";
-//import jpNameGenerator from "japanese-name-generator";
+const cache = {};
 
-const nameGenerator = () => {
-  var ins = new chineseNameGenerator();
-  //return jpNameGenerator().name;
-  return ins.unique().result();
+function importAll(r: any) {
+  r.keys().forEach((key: any) => (cache[key] = r(key)));
+}
+
+importAll(require.context("../images", true, /\.png$/));
+
+console.log("cache: ", cache);
+
+const generatorAvatars = () => {
+  const imgLength = Object.keys(cache).length;
+  //@ts-ignore
+  return Object.values(cache)[Math.ceil(Math.random() * (imgLength - 1))]
+    .default;
 };
 
 export type Employee = {
@@ -24,99 +32,346 @@ export type Bumon = {
   rowCount?: number;
 };
 
-export const defaultAvatarImg =
-  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4QAqRXhpZgAASUkqAAgAAAABADEBAgAHAAAAGgAAAAAAAABHb29nbGUAAP/bAIQAAwICAwICAwMDAwQDAwQFCAUFBAQFCgcHBggMCgwMCwoLCw0OEhANDhEOCwsQFhARExQVFRUMDxcYFhQYEhQVFAEDBAQFBAUJBQUKFA0LDRQUEBAUFRQPFQ8VFBUQERIUEhQSERUNFRASFRAPFRUVEg0PFQ8VFBUQFRMNDRUTFREN/8AAEQgAIAAgAwERAAIRAQMRAf/EABoAAAICAwAAAAAAAAAAAAAAAAcIBgkDBAX/xAAwEAACAQMDAgQCCwEAAAAAAAABAgMEBREGBxIAIRMxUWEiQggJFBUyQXGBkdHwFv/EABoBAAMBAAMAAAAAAAAAAAAAAAQFBgIAAQP/xAAoEQACAQMDAgUFAAAAAAAAAAABAgADBBESIUEFMRNRcYHBIjJhsdH/2gAMAwEAAhEDEQA/AGo3k3Wte1GjajVFfAZ3p2WBKZSoeV3zxQFiPQk8c4AJwQD0ZUqeEuTIShRN5VCJsefSVd7w786g3Nv1TWXmvmkikYint6Pwp4gDgcYx2ABPHJyx8yT59JHqPVOWP8lxb2tK2XTTHvzBk+pEjqHVwWiVs8h54zgke+cHrGk4hkO+w30hrjoK8U1PXV1XcNN54SUYk5rEDgh4wfLHnxBAOT2z3BNC4eiwB+3yiHqXSqV6hZABU4PwfP17/omP6w7Vt3syWSyMIxZ3LVavGzF55RhMMSo/CHzxGR8QJOeykXbMSF4gPQ6CLrq5y3aIzbrNddW1sktFC0xiMYYgHAY54j9yD/PS8sqDeVyqW7TU03pyv1bUVENujaeSKnM/FRnI5KoA9yzj/Z60zhBvOIpfZZnsU01quxp5QyMcAo3r5qf0IOfcHrptxmYO0s9+sX2XuGvrJo+rtFMz1NNJWwvhSQwNO0wBx5HNOVX1Mnt0TcnChzxEXTV01GQc/EU3ZvSS0eg6UMstHPLLK1RE8CrKHyFZW5KT8gI9sdIa9TLyzt0+idKwbVUOmtSXW522penjrowr03BXEb8ubFSc4BOPh/Lvj5eOGrFlCtxPRaIRiy8yI682dvertwrd9wWtquX7veWZqaIjxWi5lUVBnLlQFUDucAdgB0XQqDTpPnArlMHVwBkyzGS1fSTkwXrtrXx3AaCv/rpofGIxtJPNuNxnPtFq1ts7rHaSiov+1e0zivq2pqC4WdpDDI3hmXwpuaqUkwkzBz8LhSpKuFEqi4tmpjWO0qLK/WufDPeQ6RkgAaV1RfI9jnPoAO5PsBk/l0vAzsI4JxuYYdm9qN4yaPXOiH0XRWq50K/YYNVx1n2vwyc+M0aIBEXx8K5JCEcsMxVXlG1anhtsyUu7+nXJpb6fxjef/9k=";
-// "https://lh3.googleusercontent.com/ogw/ADea4I7Es9_kahiNXLSb2LQpcw_RfAqdFje34CFyt-wtDQ=s32-c-mo";
-
-const generatorEmployees = (count: number = 5): Employee[] => {
-  const employees: Employee[] = [];
-  for (let i = 0; i < count; i++) {
-    employees.push({
-      name: nameGenerator(),
-      id: Math.random().toFixed(4).toString(),
-      // avatar: defaultAvatarImg,
-      isLeader: i === 0,
-    });
-  }
-
-  return employees;
-};
-
 export const datas: Bumon = {
   id: "d-1",
-  name: "虚拟公司",
-  rowCount: 2,
-  staff: [
-    {
-      name: nameGenerator(),
-      id: "p-1",
-      // avatar: defaultAvatarImg,
-      isLeader: true,
-    },
-  ],
+  name: "学校法人　グレープ学園",
   children: [
     {
-      name: "管理部",
-      id: "d-2",
-      staff: generatorEmployees(5),
+      name: "葡萄大学",
+      id: "100",
+      staff: [],
       children: [
         {
-          name: "人力资源部",
-          id: "d-3",
-          staff: generatorEmployees(10),
+          name: "科学研究科",
+          id: "112",
+          staff: [
+            {
+              name: "出口奈那",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: true,
+            },
+            {
+              name: "鈴木治彦",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "新田武英",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "根本十三",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "川嶋国彦",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "西篤",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "寺岡武",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "米山正吉",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "福島夢",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "井手文夫",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+            {
+              name: "百瀬隆志",
+              id: "1",
+              avatar: generatorAvatars(),
+              isLeader: false,
+            },
+          ],
         },
         {
-          name: "公关部",
-          id: "d-4",
-          staff: generatorEmployees(5),
+          name: "情報工学科",
+          id: "113",
+          staff: [
+            {
+              id: "1",
+              avatar: generatorAvatars(),
+              name: "佐伯紅葉",
+              isLeader: true,
+            },
+            {
+              id: "2",
+              avatar: generatorAvatars(),
+              name: "沢村正吾",
+              isLeader: false,
+            },
+            {
+              id: "3",
+              avatar: generatorAvatars(),
+              name: "北尾定吉",
+              isLeader: false,
+            },
+            {
+              id: "4",
+              avatar: generatorAvatars(),
+              name: "服部啓司",
+              isLeader: false,
+            },
+            {
+              id: "5",
+              avatar: generatorAvatars(),
+              name: "矢崎謙治",
+              isLeader: false,
+            },
+          ],
         },
       ],
     },
     {
-      name: "技术部",
-      id: "d-21",
-      staff: generatorEmployees(5),
+      name: "教育学部",
+      id: "120",
       children: [
         {
-          name: "平台研发部",
-          id: "d-31",
-          staff: generatorEmployees(3),
-        },
-        {
-          name: "业务研发部",
-          id: "d-32",
-          staff: generatorEmployees(20),
-          rowCount: 6,
-          children: [
+          name: "教育専攻科",
+          id: "121",
+          staff: [
             {
-              name: "智慧城市研发组",
-              id: "d-321",
-              staff: generatorEmployees(30),
-              children: [
-                {
-                  name: "交付和实施小组",
-                  id: "d-3232",
-                  staff: generatorEmployees(3),
-                },
-                {
-                  name: "前端研发组",
-                  id: "d-3231",
-                  staff: generatorEmployees(5),
-                  rowCount: 2,
-                },
-                {
-                  name: "后端研发组",
-                  id: "d-3233",
-                  staff: generatorEmployees(5),
-                },
-              ],
+              id: "1",
+              name: "坂口重吉",
+              avatar: generatorAvatars(),
+              isLeader: true,
             },
             {
-              name: "智慧交通研发组",
-              id: "d-323",
-              staff: generatorEmployees(5),
+              id: "2",
+              name: "鳴海希望",
+              avatar: generatorAvatars(),
+              isLeader: false,
             },
           ],
+        },
+      ],
+    },
+    {
+      name: "文学部",
+      id: "130",
+      staff: [
+        {
+          id: "1",
+          name: "坂口重吉",
+          isLeader: true,
+          avatar: generatorAvatars(),
+        },
+        {
+          id: "1",
+          name: "望月俊之",
+          isLeader: false,
+          avatar: generatorAvatars(),
+        },
+        {
+          id: "1",
+          name: "吉井咲菜",
+          isLeader: false,
+          avatar: generatorAvatars(),
+        },
+        {
+          id: "1",
+          name: "高尾幸一郎",
+          isLeader: false,
+          avatar: generatorAvatars(),
+        },
+        {
+          id: "1",
+          name: "西雅敏",
+          isLeader: false,
+          avatar: generatorAvatars(),
+        },
+      ],
+      children: [
+        {
+          name: "日本文学科",
+          id: "131",
+          staff: [
+            {
+              id: "2",
+              name: "塩谷憲治",
+              avatar: generatorAvatars(),
+              isLeader: true,
+            },
+          ],
+        },
+        {
+          name: "英米語文学科",
+          id: "132",
+          staff: [
+            {
+              id: "3",
+              name: "福島夢",
+              avatar: generatorAvatars(),
+              isLeader: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "付属高等学校",
+      id: "200",
+      staff: [
+        {
+          id: "3",
+          name: "村上重一",
+          avatar: generatorAvatars(),
+          isLeader: true,
+        },
+        {
+          id: "3",
+          name: "平松雪乃",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "3",
+          name: "西篤",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "3",
+          name: "猪股克己",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "3",
+          name: "坂東静男",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "3",
+          name: "成田重男",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+      ],
+    },
+    {
+      name: "付属中学校",
+      id: "300",
+      staff: [
+        {
+          id: "4",
+          name: "早川常夫",
+          avatar: generatorAvatars(),
+          isLeader: true,
+        },
+        {
+          id: "4",
+          name: "三谷孝治",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+      ],
+    },
+    {
+      name: "付属小学校",
+      id: "400",
+      staff: [
+        {
+          id: "4",
+          name: "根本十三",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "4",
+          name: "沢村正吾",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "4",
+          name: "矢部昭一",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "4",
+          name: "大山香保",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+      ],
+    },
+    {
+      name: "付属幼稚園",
+      id: "500",
+      staff: [
+        {
+          id: "5",
+          name: "早川常夫",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "尾上真一",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "宮里結",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "斎藤優子",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "大山香保",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "福原麻里",
+          avatar: generatorAvatars(),
+          isLeader: false,
+        },
+        {
+          id: "5",
+          name: "原口優那",
+          avatar: generatorAvatars(),
+          isLeader: false,
         },
       ],
     },

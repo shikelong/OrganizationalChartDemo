@@ -37,7 +37,7 @@ const html2Pdf = (format: "a4" | "a3") => {
       orientation: "landscape",
       unit: "mm",
     },
-    fitToPage: true,
+    // fitToPage: true,
     fileName: "test.pdf",
     margin: {
       top: 5,
@@ -90,8 +90,8 @@ const OrgChartDemo = (props: IorgChartDemoProps) => {
   }, []);
 
   return (
-    <div style={{ width: "100vw", display: "flex" }}>
-      <div style={{ width: "75%" }} ref={containerRef}>
+    <div style={{ width: "100vw", height: "100vh", display: "flex" }}>
+      <div style={{ width: "100%", height: "100%" }} ref={containerRef}>
         <OrganizationChart
           ref={orgChartRef}
           collapsible={true}
@@ -105,7 +105,7 @@ const OrgChartDemo = (props: IorgChartDemoProps) => {
         <div className="notPrint">
           <button onClick={expandAllNodes}>Expand nodes</button>
           {"    "}
-          <button onClick={() => scale()}>Scale Width</button>
+          {/* <button onClick={() => scale()}>Scale Width</button> */}
           {"     "}
           <button
             onClick={() => {
@@ -124,7 +124,7 @@ const OrgChartDemo = (props: IorgChartDemoProps) => {
           </button>
         </div>
       </div>
-      <div style={{ width: "20%" }} className="notPrint">
+      {/* <div style={{ width: "20%" }} className="notPrint">
         <textarea
           value={editorValue}
           style={{ height: "100%", width: "100%", margin: "0.5em" }}
@@ -141,7 +141,7 @@ const OrgChartDemo = (props: IorgChartDemoProps) => {
         >
           apply
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

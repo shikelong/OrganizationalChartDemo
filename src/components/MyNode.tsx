@@ -24,38 +24,37 @@ const getContainerWidth = (
 
 const MyNode = ({ nodeData }: IMyNodeProps): JSX.Element => {
   return (
-    <div className="leaf">
+    <div
+      className={`leaf ${
+        (nodeData.staff || []).length === 0 ? "emptyNode" : ""
+      }`}
+    >
       <div className="header">
         <div>{nodeData.name}</div>
       </div>
-      <ul
-        className="stuff"
-        style={{
-          width: getContainerWidth(nodeData.rowCount, nodeData.staff?.length),
-        }}
-      >
-        {(nodeData.staff || []).map((employee, index) => (
-          <li
-            key={employee.id + index}
-            className={`person ${employee.isLeader ? "leader" : ""}`}
-            style={{
-              width: itemWidth,
-              textOverflow: "clip",
-            }}
-          >
-            {/* <img src={employee.avatar ?? defaultAvatarImg} alt="" /> */}
-            <Avatar
-              size={50}
-              name={employee.name}
-              square
-              variant="beam"
-              colors={["#92A1C6", "#146A7C", "#F0AB3D", "#C271B4", "#C20D90"]}
-            />
-            <span className="personName">{employee.name}</span>
-            <span className="personDescription">{employee.description}</span>
-          </li>
-        ))}
-      </ul>
+      {(nodeData.staff || []).length > 0 && (
+        <ul
+          className="stuff"
+          style={{
+            width: getContainerWidth(nodeData.rowCount, nodeData.staff?.length),
+          }}
+        >
+          {(nodeData.staff || []).map((employee, index) => (
+            <li
+              key={employee.id + index}
+              className={`person ${employee.isLeader ? "leader" : ""}`}
+              style={{
+                width: itemWidth,
+                textOverflow: "clip",
+              }}
+            >
+              {<img src={employee.avatar} alt="" />}
+              <span className="personName">{employee.name}</span>
+              <span className="personDescription">{employee.description}</span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
